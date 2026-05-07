@@ -1,219 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garv Patel | Portfolio</title>
-    <meta name="description"
-        content="Portfolio of Garv Patel, featuring Agricare, Vehicle Rental System, and Cadet Dossier Management System.">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garv Patel | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Garv Patel — Full-Stack Developer. Projects: Agricare, Vehicle Rental, Cadet Dossier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">GP<span>.</span></a>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="nav-socials">
-                <a href="https://github.com/garvpatel14" target="_blank"><i data-lucide="github"></i></a>
-            </div>
-            <button class="mobile-menu-btn">
-                <i data-lucide="menu"></i>
-            </button>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-inner">
+      <span class="loader-logo">GP<em>.</em></span>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">GP<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/garvpatel14" target="_blank" class="nav-icon" aria-label="GitHub">
+          <i data-lucide="github"></i>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="availability-badge reveal">
+          <span class="pulse-dot"></span> Available for Work
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="gradient-circle circle-1"></div>
-            <div class="gradient-circle circle-2"></div>
+        <h1 class="reveal delay-1">Hi, I'm <span class="gradient-text">Garv Patel</span></h1>
+        <p class="hero-sub reveal delay-2">
+          Full-Stack Developer building solutions in
+          <span id="typedText" class="typed-text"></span><span class="cursor-blink">|</span>
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a href="#projects" class="btn btn-primary"><i data-lucide="folder-open"></i> View My Work</a>
+          <a href="#contact"  class="btn btn-secondary"><i data-lucide="send"></i> Get In Touch</a>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <span class="badge">Available for Work</span>
-                <h1 class="reveal">Hi, I'm <span class="highlight">Garv Patel</span></h1>
-                <p class="reveal delay-1">A Full-Stack Developer passionate about building innovative solutions in AI,
-                    Logistics, and Administration.</p>
-                <div class="hero-actions reveal delay-2">
-                    <a href="#projects" class="btn primary">View My Work</a>
-                    <a href="#contact" class="btn secondary">Get In Touch</a>
-                </div>
-            </div>
+        <div class="stats-row reveal delay-3">
+          <div class="stat-item">
+            <span class="stat-number" id="statProjects">3</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="statSkills">20</span>
+            <span class="stat-label">Technologies</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="statYears">2</span>
+            <span class="stat-label">Years Coding</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint"><i data-lucide="chevrons-down"></i></a>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="reveal">Featured Projects</h2>
-                <p class="reveal delay-1">Showcasing my technical expertise and problem-solving skills.</p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Project 1: Agricare (Collaborative) -->
-                <div class="project-card reveal">
-                    <div class="project-image agricare-img">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="tags">
-                            <span class="group-tag">Group Project</span>
-                            <span>AI</span>
-                            <span>Python</span>
-                        </div>
-                        <h3>Agricare</h3>
-                        <p>A collaborative precision agriculture platform. Contributed to AI-driven insights and
-                            real-time crop analytics for sustainable farming.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Nilay-Patel-5/Agricare" target="_blank" class="project-link">
-                                <i data-lucide="github"></i> Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Vehicle Rental -->
-                <div class="project-card reveal delay-1">
-                    <div class="project-image vehicle-img">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="tags">
-                            <span>Logistics</span>
-                            <span>Supabase</span>
-                            <span>Python</span>
-                        </div>
-                        <h3>Vehicle Rental System</h3>
-                        <p>A full-stack rental platform featuring real-time geofencing, secure document verification
-                            (KYC), and automated invoice generation.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/garvpatel14/Vehicle-Rental" target="_blank"
-                                class="project-link">
-                                <i data-lucide="github"></i> Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: Cadet Dossier -->
-                <div class="project-card reveal delay-2">
-                    <div class="project-image cadet-img">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="tags">
-                            <span>Military Tech</span>
-                            <span>PHP</span>
-                            <span>PostgreSQL</span>
-                        </div>
-                        <h3>Cadet Dossier Management</h3>
-                        <p>A comprehensive system for military cadet records, inventory tracking, and administrative
-                            oversight with secure multi-role access.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/garvpatel14/Cadet-Dossier-Management-System" target="_blank"
-                                class="project-link">
-                                <i data-lucide="github"></i> Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-label">About Me</span>
+          <h2>Passionate developer,<br><span class="gradient-text">lifelong learner</span></h2>
+          <p>I'm a Computer Engineering student at CHARUSAT University with a passion for building full-stack applications that solve real-world problems. I specialise in AI integration, database-driven systems, and clean backend architecture.</p>
+          <p>Whether working solo or in a team, I bring dedication, curiosity, and attention to detail to every project.</p>
+          <div class="about-links">
+            <a href="mailto:papatel9638@gmail.com" class="btn btn-primary"><i data-lucide="mail"></i> Email Me</a>
+            <a href="https://github.com/garvpatel14" target="_blank" class="btn btn-secondary"><i data-lucide="github"></i> GitHub</a>
+          </div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="reveal">Technical Skills</h2>
-                <p class="reveal delay-1">Technologies I work with to bring ideas to life.</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category reveal">
-                    <h4>Languages</h4>
-                    <div class="skill-tags">
-                        <span>Python</span>
-                        <span>PHP</span>
-                        <span>JavaScript</span>
-                        <span>Java</span>
-                        <span>C++</span>
-                        <span>HTML5/CSS3</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal delay-1">
-                    <h4>Backend & Databases</h4>
-                    <div class="skill-tags">
-                        <span>Supabase</span>
-                        <span>PostgreSQL</span>
-                        <span>MySQL</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal delay-2">
-                    <h4>Specializations</h4>
-                    <div class="skill-tags">
-                        <span>AI Integration</span>
-                        <span>Real-time Tracking</span>
-                    </div>
-                </div>
-            </div>
+        <div class="about-cards reveal delay-2">
+          <div class="info-card">
+            <i data-lucide="graduation-cap"></i>
+            <div><h4>Education</h4><p>B.Tech Computer Engineering<br>CHARUSAT University</p></div>
+          </div>
+          <div class="info-card">
+            <i data-lucide="map-pin"></i>
+            <div><h4>Location</h4><p>Gujarat, India</p></div>
+          </div>
+          <div class="info-card">
+            <i data-lucide="code-2"></i>
+            <div><h4>Focus</h4><p>Full-Stack · AI · Backend</p></div>
+          </div>
+          <div class="info-card">
+            <i data-lucide="mail"></i>
+            <div><h4>University Email</h4><p>24ce080@charusat.edu.in</p></div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-card reveal">
-                <h2>Let's connect and build something <span class="highlight">extraordinary</span>.</h2>
-                <div class="contact-info">
-                    <p>I'm always open to discussing new projects, creative ideas or architectural challenges.</p>
-                    <div class="contact-links">
-                        <a href="https://github.com/garvpatel14" class="contact-btn" target="_blank">
-                            <i data-lucide="github"></i> GitHub
-                        </a>
-                        <a href="mailto:papatel9638@gmail.com" class="contact-btn">
-                            <i data-lucide="mail"></i> Contact Me
-                        </a>
-                    </div>
-                    <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
-                        Primary: papatel9638@gmail.com | Alt: 24ce080@charusat.edu.in
-                    </div>
-                </div>
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Portfolio</span>
+        <h2>Featured <span class="gradient-text">Projects</span></h2>
+        <p>Real-world applications showcasing my technical expertise.</p>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+        <div class="project-card skeleton-card"></div>
+        <div class="project-card skeleton-card"></div>
+        <div class="project-card skeleton-card"></div>
+      </div>
+      <p class="api-notice hidden" id="projectsError">
+        <i data-lucide="wifi-off"></i> Showing offline data — start the server to enable live API.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Expertise</span>
+        <h2>Technical <span class="gradient-text">Skills</span></h2>
+        <p>Technologies I work with to bring ideas to life.</p>
+      </div>
+      <div class="skills-grid" id="skillsGrid">
+        <div class="skill-category skeleton-card"></div>
+        <div class="skill-category skeleton-card"></div>
+        <div class="skill-category skeleton-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's build something <span class="gradient-text">extraordinary</span></h2>
+        <p>Open to new projects, collaborations and creative ideas.</p>
+      </div>
+      <div class="contact-wrapper reveal delay-1">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <div class="input-wrap">
+              <i data-lucide="user"></i>
+              <input type="text" id="contactName" name="name" placeholder="John Doe" required>
             </div>
-        </div>
-    </section>
+            <span class="field-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <div class="input-wrap">
+              <i data-lucide="mail"></i>
+              <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+            </div>
+            <span class="field-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <div class="input-wrap textarea-wrap">
+              <i data-lucide="message-square"></i>
+              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <span class="field-error" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+            <i data-lucide="send"></i> <span id="submitText">Send Message</span>
+          </button>
+          <div class="form-feedback hidden" id="formFeedback"></div>
+        </form>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Garv Patel. Built with passion & modern technologies.</p>
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <h3>Contact Info</h3>
+            <div class="contact-detail">
+              <i data-lucide="mail"></i>
+              <div><span>Primary</span><a href="mailto:papatel9638@gmail.com">papatel9638@gmail.com</a></div>
+            </div>
+            <div class="contact-detail">
+              <i data-lucide="mail"></i>
+              <div><span>University</span><a href="mailto:24ce080@charusat.edu.in">24ce080@charusat.edu.in</a></div>
+            </div>
+            <div class="contact-detail">
+              <i data-lucide="github"></i>
+              <div><span>GitHub</span><a href="https://github.com/garvpatel14" target="_blank">garvpatel14</a></div>
+            </div>
+            <div class="contact-detail">
+              <i data-lucide="map-pin"></i>
+              <div><span>Location</span><p>Gujarat, India</p></div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script src="js/script.js"></script>
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#home" class="logo">GP<span>.</span></a>
+        <p>&copy; 2026 Garv Patel &middot; Built with Node.js, Express &amp; PostgreSQL</p>
+        <div class="footer-socials">
+          <a href="https://github.com/garvpatel14" target="_blank" aria-label="GitHub"><i data-lucide="github"></i></a>
+          <a href="mailto:papatel9638@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top hidden" id="backToTop" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="js/script.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
-
 </html>
