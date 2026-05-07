@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     const loader = document.getElementById('loader');
     if (loader) loader.classList.add('hidden');
-  }, 1900);
+  }, 600);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
