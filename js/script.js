@@ -4,14 +4,20 @@
 ───────────────────────────────────────────────── */
 
 // ═══════════════════════════════════════
-// Loader
+// Loader — Robust Reveal
 // ═══════════════════════════════════════
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loader = document.getElementById('loader');
-    if (loader) loader.classList.add('hidden');
-  }, 600);
-});
+const hideLoader = () => {
+  const loader = document.getElementById('loader');
+  if (loader && !loader.classList.contains('hidden')) {
+    loader.classList.add('hidden');
+  }
+};
+
+// Main reveal on window load
+window.addEventListener('load', () => setTimeout(hideLoader, 600));
+
+// Safety fallback: Reveal anyway after 3 seconds if load event is stuck
+setTimeout(hideLoader, 3000);
 
 document.addEventListener('DOMContentLoaded', () => {
 
