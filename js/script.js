@@ -1,9 +1,7 @@
 /* ─────────────────────────────────────────────────
-   Garv Patel Portfolio — Dynamic Frontend Script
-   Fetches projects & skills from Express/PostgreSQL
+   Garv Patel Portfolio — Static Frontend Script
+   Optimized for GitHub Pages / Static Hosting
 ───────────────────────────────────────────────── */
-
-const API_BASE = window.location.port ? `${window.location.protocol}//${window.location.hostname}:${window.location.port}` : '';
 
 // ═══════════════════════════════════════
 // Loader
@@ -119,36 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(step);
   }
 
-  async function loadStats() {
-    try {
-      const res = await fetch(`${API_BASE}/api/stats`);
-      if (!res.ok) throw new Error();
-      const { data } = await res.json();
-      
-      const statsRow = document.querySelector('.stats-row');
-      if (statsRow) {
-        const statsObs = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            animateCounter(document.getElementById('statProjects'), data.projects || 3);
-            animateCounter(document.getElementById('statSkills'),   data.skills   || 20);
-            animateCounter(document.getElementById('statYears'),    2); // Years coding is still manual
-            statsObs.disconnect();
-          }
-        }, { threshold: 0.5 });
-        statsObs.observe(statsRow);
-      }
-    } catch {
-      // Fallback if stats API fails
-      animateCounter(document.getElementById('statProjects'), 3);
-      animateCounter(document.getElementById('statSkills'),   20);
-      animateCounter(document.getElementById('statYears'),    2);
-    }
-  }
-
   // ═════════════════════════════════════
-  // API — Projects
+  // Data (Hardcoded for Static Hosting)
   // ═════════════════════════════════════
-  const FALLBACK_PROJECTS = [
+  const PROJECT_DATA = [
     {
       title: 'Agricare',
       description: 'A collaborative precision agriculture platform featuring AI-driven crop disease detection, real-time weather integration, and smart market insights for sustainable farming.',
@@ -178,11 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  const FALLBACK_SKILLS = {
+  const SKILLS_DATA = {
     'Languages':         ['Python', 'PHP', 'JavaScript', 'Java', 'C++', 'HTML5/CSS3'],
     'Backend & Databases': ['Node.js', 'Express.js', 'PostgreSQL', 'MySQL', 'Supabase', 'MongoDB'],
     'Specializations':   ['AI Integration', 'Real-time Tracking', 'REST APIs', 'Geofencing'],
-    'Tools & DevOps':    ['Git & GitHub', 'Docker', 'Vercel', 'Linux/Bash']
+    'Tools & DevOps':    ['Git & GitHub', 'Docker', 'Vercel']
+  };
+
+  const STATS_DATA = {
+    projects: 3,
+    skills: 20,
+    years: 2
   };
 
   const CAT_ICONS = {
@@ -231,21 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  async function loadProjects() {
-    try {
-      const res = await fetch(`${API_BASE}/api/projects`);
-      if (!res.ok) throw new Error('API error');
-      const json = await res.json();
-      renderProjects(json.data);
-    } catch {
-      document.getElementById('projectsError')?.classList.remove('hidden');
-      renderProjects(FALLBACK_PROJECTS);
-    }
-  }
-
-  // ═════════════════════════════════════
-  // API — Skills
-  // ═════════════════════════════════════
   function renderSkills(grouped) {
     const grid = document.getElementById('skillsGrid');
     if (!grid) return;
@@ -265,19 +228,23 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  async function loadSkills() {
-    try {
-      const res = await fetch(`${API_BASE}/api/skills`);
-      if (!res.ok) throw new Error('API error');
-      const json = await res.json();
-      renderSkills(json.data);
-    } catch {
-      renderSkills(FALLBACK_SKILLS);
+  function initStats() {
+    const statsRow = document.querySelector('.stats-row');
+    if (statsRow) {
+      const statsObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          animateCounter(document.getElementById('statProjects'), STATS_DATA.projects);
+          animateCounter(document.getElementById('statSkills'),   STATS_DATA.skills);
+          animateCounter(document.getElementById('statYears'),    STATS_DATA.years);
+          statsObs.disconnect();
+        }
+      }, { threshold: 0.5 });
+      statsObs.observe(statsRow);
     }
   }
 
   // ═════════════════════════════════════
-  // Contact Form
+  // Contact Form (Client-side logic only)
   // ═════════════════════════════════════
   const form       = document.getElementById('contactForm');
   const submitBtn  = document.getElementById('submitBtn');
@@ -301,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (form) {
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       clearErrors();
 
@@ -323,15 +290,22 @@ document.addEventListener('DOMContentLoaded', () => {
       submitText.textContent = 'Sending…';
 
       try {
-        const res = await fetch(`${API_BASE}/api/contact`, {
+        const response = await fetch('https://formspree.io/f/mlgzlqlg', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, message })
+          body: JSON.stringify({ name, email, message }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
         });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json.message || 'Server error');
-        showFeedback('✅ ' + json.message, 'success');
-        form.reset();
+
+        if (response.ok) {
+          showFeedback('✅ Thank you! Your message has been sent successfully.', 'success');
+          form.reset();
+        } else {
+          const data = await response.json();
+          throw new Error(data.errors?.[0]?.message || 'Submission failed');
+        }
       } catch (err) {
         showFeedback('❌ ' + (err.message || 'Failed to send. Please email directly.'), 'error');
       } finally {
@@ -343,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Bootstrap ─────────────────────────────────
-  loadProjects();
-  loadSkills();
-  loadStats();
+  renderProjects(PROJECT_DATA);
+  renderSkills(SKILLS_DATA);
+  initStats();
 });
